@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youssef Naggar - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: #fff;
+            --highlight: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+        }
+
+        .profile-text {
+            text-align: left;
+        }
+
+        .profile-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li {
+            padding: 1rem 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        .education-card, .project-card, .certification-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .education-card:hover, .project-card:hover, .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-card h3, .project-card h3, .certification-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .education-card p, .certification-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li::before {
+            content: '▹';
+            color: var(--highlight);
+            margin-right: 0.5rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            margin: 1rem 0;
+        }
+
+        .project-features {
+            margin: 1rem 0;
+        }
+
+        .project-tech {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-basis: 45%;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .language-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .language-item {
+            background-color: var(--card-bg);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-item strong {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            display: inline-block;
+            margin-right: 1rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .project-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .profile-section {
+                flex-direction: column;
+            }
+
+            .profile-text {
+                text-align: center;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                flex-basis: 100%;
+            }
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #f5f5f5;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --highlight: #2ecc71;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .theme-toggle i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <div class="profile-section">
+              <img src="yourphoto.jpg" alt="Youssef Naggar" class="profile-image" id="profile-image">
+                <div class="profile-text">
+                    <h1>Youssef Sami Naggar</h1>
+                    <p>Computer Science Student & Developer</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <p>I am a Computer Science student at Cairo University with a strong passion for programming and data science. Currently ranked 10th in my cohort, I'm dedicated to expanding my knowledge and skills in various programming languages and technologies. I enjoy building practical applications and solving complex problems through coding.</p>
+            <div class="language-list">
+                <div class="language-item">
+                    <strong>English:</strong> B2
+                </div>
+                <div class="language-item">
+                    <strong>Arabic:</strong> Native
+                </div>
+                <div class="language-item">
+                    <strong>French:</strong> B1 (Delf B1 certified)
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <p><strong>Faculty of Computers and Artificial Intelligence, Cairo University</strong></p>
+                <p>Expected Graduation: 2027 (Currently in 2nd year)</p>
+                <p>GPA: 3.73/4.0 (Ranked 10th in cohort)</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>C++</li>
+                        <li>Python</li>
+                        <li>SQL</li>
+                        <li>Bash</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Technologies</h3>
+                    <ul class="skill-list">
+                        <li>NumPy</li>
+                        <li>Pandas</li>
+                        <li>scikit-learn</li>
+                        <li>Beautiful Soup</li>
+                        <li>Django</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <ul class="skill-list">
+                        <li>VSCode</li>
+                        <li>CLion</li>
+                        <li>PyCharm</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            
+            <!-- Project 1: Weather Wizard 3000 -->
+            <div class="project-card">
+                <h3>Weather Wizard 3000</h3>
+                <img src="/api/placeholder/800/300" alt="Weather Wizard 3000" class="project-image">
+                <div class="project-description">
+                    <p>A personal weather forecasting assistant that provides 5-day forecasts and AI-powered outfit recommendations. Built in Python, this application leverages the OpenWeatherMap API for accurate weather data and Google's Gemini API for intelligent clothing suggestions based on current weather conditions.</p>
+                </div>
+                <div class="project-features">
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>5-day weather forecast with detailed information</li>
+                        <li>Multiple location options (city search, IP-based auto-detection, manual coordinates)</li>
+                        <li>Comprehensive weather data including temperature, humidity, and rain predictions</li>
+                        <li>AI-powered outfit suggestions tailored to weather conditions</li>
+                        <li>User-friendly command-line interface with emoji-enhanced output</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">API Integration</span>
+                    <span class="tech-tag">OpenWeatherMap</span>
+                    <span class="tech-tag">Google Gemini</span>
+                    <span class="tech-tag">Data Processing</span>
+                </div>
+            </div>
+
+            <!-- Project 2: Wordle Combination Finder -->
+            <div class="project-card">
+                <h3>Wordle Combination Finder</h3>
+                <img src="/api/placeholder/800/300" alt="Wordle Combination Finder" class="project-image">
+                <div class="project-description">
+                    <p>An algorithmic solution to find the optimal word combinations for the popular Wordle game. This project analyzes letter frequencies and their positions to identify sets of words that maximize information gain and efficiently narrow down possible solutions in Wordle.</p>
+                </div>
+                <div class="project-features">
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>Data collection and filtering of Wordle-compatible words</li>
+                        <li>Letter position frequency analysis</li>
+                        <li>Advanced scoring system based on letter frequencies in specific positions</li>
+                        <li>Trie data structure implementation for efficient word storage and retrieval</li>
+                        <li>Backtracking algorithm with multiprocessing for optimal combination finding</li>
+                        <li>Discovered superior four-word combination outperforming popular strategies by 8%</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Data Analysis</span>
+                    <span class="tech-tag">Algorithms</span>
+                    <span class="tech-tag">Multiprocessing</span>
+                    <span class="tech-tag">Web Scraping</span>
+                </div>
+                <div class="project-results">
+                    <h4>Key Finding:</h4>
+                    <p>Optimal 4-word combination: ['HOWFS', 'IXTLE', 'JUMBY', 'KRANG'] with a score of 2659, outperforming commonly cited combinations by 8%.</p>
+                </div>
+            </div>
+
+            <!-- Project 3: UltraTube -->
+            <div class="project-card">
+                <h3>UltraTube - YouTube Media Downloader</h3>
+                <img src="/api/placeholder/800/300" alt="UltraTube" class="project-image">
+                <div class="project-description">
+                    <p>A powerful command-line application for downloading YouTube content with advanced features. UltraTube goes beyond basic downloaders by supporting multiple audio tracks, subtitle options, and various quality settings while preserving metadata and providing a user-friendly interface.</p>
+                </div>
+                <div class="project-features">
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>Flexible media options (video or audio-only downloads)</li>
+                        <li>Multiple audio track selection (including dubbed versions)</li>
+                        <li>Comprehensive subtitle support in multiple languages</li>
+                        <li>Enhanced metadata handling (thumbnails, chapters, tags)</li>
+                        <li>User-friendly interface with clear prompts and error handling</li>
+                        <li>Built with yt-dlp and FFmpeg for powerful media processing</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">yt-dlp</span>
+                    <span class="tech-tag">FFmpeg</span>
+                    <span class="tech-tag">API Integration</span>
+                    <span class="tech-tag">Command Line Interface</span>
+                </div>
+            </div>
+
+            <!-- Project 4: Monster Wrangler -->
+            <div class="project-card">
+                <h3>Monster Wrangler Game</h3>
+                <img src="/api/placeholder/800/300" alt="Monster Wrangler" class="project-image">
+                <div class="project-description">
+                    <p>A fast-paced 2D arcade-style game built with Pygame where players control a knight who must catch specific colored monsters while avoiding others. The game features progressive difficulty, lives system, and special abilities, all implemented with object-oriented design principles.</p>
+                </div>
+                <div class="project-features">
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>Arcade-style gameplay with progressive difficulty</li>
+                        <li>Object-oriented design with custom classes for game entities</li>
+                        <li>Collision detection and state management systems</li>
+                        <li>Lives and special abilities (warps) systems</li>
+                        <li>Custom sprites and game assets</li>
+                        <li>Scoring system based on round progression</li>
+                    </ul>
+                </div>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Pygame</span>
+                    <span class="tech-tag">OOP</span>
+                    <span class="tech-tag">Game Development</span>
+                    <span class="tech-tag">Sprite Animation</span>
+                </div>
+                <div class="project-controls">
+                    <h4>Controls:</h4>
+                    <p>Arrow keys to move the knight, Space to use warp ability or start a new game.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2 class="section-title">Certifications & Courses</h2>
+            <div class="certification-card">
+                <h3>Python for Data Science, AI & Development</h3>
+                <p>IBM</p>
+            </div>
+            <div class="certification-card">
+                <h3>Databases and SQL for Data Science with Python</h3>
+                <p>IBM</p>
+            </div>
+            <div class="certification-card">
+                <h3>Statistics with Python Specialization</h3>
+                <p>University of Michigan</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>youssef.naggar.pro@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+20 106 207 0781</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Cairo, Zahraa El Maadi</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <p><a href="https://www.linkedin.com/in/youssef-naggar/" target="_blank">linkedin.com/in/youssef-naggar/</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <p><a href="https://github.com/YoussefSamiGeorges" target="_blank">github.com/YoussefSamiGeorges</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Youssef Sami Naggar. All rights reserved.</p>
+    </footer>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
