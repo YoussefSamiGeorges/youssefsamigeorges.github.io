@@ -186,11 +186,19 @@ section {
     overflow: hidden;
 }
 
+.project-images {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
 .project-horizontal-image {
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
-    margin-bottom: 1rem;
+    flex: 1;
+    min-width: 300px;
 }
 
 .project-vertical-image {
@@ -206,6 +214,20 @@ section {
 
 .project-features {
     margin: 1rem 0;
+}
+
+.project-features h4, .project-results h4, .project-controls h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.project-features ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.project-features ul li {
+    margin-bottom: 0.3rem;
 }
 
 .project-tech {
@@ -241,6 +263,16 @@ section {
     font-size: 1.5rem;
     margin-right: 1rem;
     color: var(--secondary-color);
+}
+
+.contact-item a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: var(--accent-color);
 }
 
 .language-list {
@@ -310,6 +342,12 @@ footer {
 
     .contact-item {
         flex-basis: 100%;
+    }
+    
+    
+    .project-horizontal-image {
+        width: 100%;
+        min-width: auto;
     }
 }
 
